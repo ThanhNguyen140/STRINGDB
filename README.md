@@ -1,5 +1,15 @@
 # STRINGDB
 
+Table of content:
+- [STRINGDB](#stringdb)
+    - [1. Goal](#1-goal)
+    - [2. Objective](#2-objective)
+    - [3. Cleaning data](#3-cleaning-data)
+    - [4. Import data to Neo4j](#4-import-data-to-neo4j)
+    - [5. Data](#5-data)
+    - [6. Test](#6-test)
+    - [7. Results](#7-results)
+
 ### 1. Goal
 This project is created to deal with StringDB database, creating a database to work with Malus Domestica. The information of the created database was retrieved from StringDB interaction table. 
 

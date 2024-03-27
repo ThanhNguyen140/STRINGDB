@@ -17,7 +17,10 @@ class TestProteinDatabase:
         self.db = pdb(DATA_FOLDER)
 
     def test_download_data(self):
-        data = "../data"
+        "Test download_data method"
+        if not os.path.exists("data/downloads"):
+            os.mkdir("data/downloads")
+        data = "data/downloads"
         db = pdb(data)
         db.download_data()
         # check if each file is created accurately
@@ -26,6 +29,7 @@ class TestProteinDatabase:
             assert os.path.exists(save_path)
 
     def test_load_data(self):
+        "Test load_data method"
         df: DataFrame = self.db.load_data()
 
         # check if data table created with proper column names
