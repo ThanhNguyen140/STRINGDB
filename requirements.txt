@@ -57,7 +57,6 @@ shellingham==1.5.4
 six==1.16.0
 SQLAlchemy==2.0.28
 stack-data==0.6.3
--e git+ssh://git@gitlab.informatik.uni-bonn.de/derofu_2/test_project_thanh2.git@ea7d5c5126dc72a469859d697e2a3b20b4315ae9#egg=test_project_thanh2
 tomlkit==0.12.4
 tornado==6.4
 tqdm==4.66.2
