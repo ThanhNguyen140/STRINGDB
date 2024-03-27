@@ -11,7 +11,7 @@ class ProteinDatabase:
         """Initiation of protein_database
 
         Args:
-            path (str): Path where the data and and DB should be store
+            path (str): Path where the data should be stored
         """
         self.base_url: str = "https://stringdb-downloads.org/download/"
         self.path = path
