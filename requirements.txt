@@ -57,6 +57,7 @@ shellingham==1.5.4
 six==1.16.0
 SQLAlchemy==2.0.28
 stack-data==0.6.3
+-e git+ssh://git@gitlab.informatik.uni-bonn.de/derofu_2/stringdb.git@ceaf93d594af0d8f7d1a2d0d4a46cecc267da5f0#egg=stringdb
 tomlkit==0.12.4
 tornado==6.4
 tqdm==4.66.2
