@@ -27,7 +27,6 @@ This project is created to deal with StringDB database, creating a database to w
 - Import ttl file to Neo4j
 
 ### 5. [Data](data)
-- The downloaded data from the test scripts are stored in this folder
 
 ### 6. [Test](tests)
 - Including interaction_parser_test.py, manager_test.py and protein_parser_test.py
