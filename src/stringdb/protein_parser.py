@@ -5,6 +5,8 @@ import requests
 
 
 class ProteinDatabase:
+    """Provide functions to download,clean and load protein tables from StringDB"""
+
     def __init__(self, path):
         """Initiation of protein_database
 

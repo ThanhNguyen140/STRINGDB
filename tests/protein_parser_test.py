@@ -13,6 +13,7 @@ files = ["3750.protein.info.v12.0.txt.gz", "3750.protein.aliases.v12.0.txt.gz"]
 
 
 class TestProteinDatabase:
+
     def setup_method(self):
         """Setup method to provide a ProteinDatabase instance as self.db."""
         self.db = ProteinDatabase(DATA_FOLDER)

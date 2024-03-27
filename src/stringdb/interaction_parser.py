@@ -6,20 +6,7 @@ from typing import Literal
 
 
 class InteractionParser:
-    """
-    A class for downloading, loading, and saving data related to protein interactions.
-
-    Attributes:
-    BASE_URL (str): The base URL for downloading data.
-    DATA_FOLDER (str): The folder to store downloaded data files.
-    data_links (dict): Dictionary containing links to different types of data.
-    desired_columns (list): List of columns to be used from the data files.
-
-    Methods:
-    - download_data: Downloads specified data files from the provided links.
-    - load_data: Loads and processes interaction and accessory data.
-    - save_sql: Saves processed data to SQLite database tables.
-    """
+    """A class for downloading, loading, and saving data related to protein interactions."""
 
     BASE_URL: str = "https://stringdb-downloads.org/download/"
 

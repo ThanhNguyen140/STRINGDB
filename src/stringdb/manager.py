@@ -9,6 +9,8 @@ from stringdb.model import Base, Interaction, Protein
 
 
 class Database:
+    """Provide functions to work with SQL database to store data from StringDB"""
+
     def __init__(self, path_to_files: str):
         """
 

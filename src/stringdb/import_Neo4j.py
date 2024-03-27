@@ -6,6 +6,8 @@ from stringdb.manager import Database
 
 
 class Graph_for_ttl:
+    """Create graph and name space for turtle file"""
+
     def __init__(self):
         """Create name space for the graph"""
         self.stringdb_ns = Namespace("https://plab2.bit.uni-bonn.de/stringdb#")
@@ -25,6 +27,8 @@ class Graph_for_ttl:
 
 
 class import_data:
+    """Import data into SQL database"""
+
     def __init__(self, path_to_db: str, path_to_ttl: str):
         """
 
