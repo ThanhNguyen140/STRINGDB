@@ -2,9 +2,9 @@ import os
 import pandas as pd
 import pytest
 from stringdb.interaction_parser import InteractionParser
+from .const import DATA_FOLDER, DOWNLOAD_FOLDER
 
 BASE_URL: str = "https://stringdb-downloads.org/download/"
-DATA_FOLDER = "data"
 expected_columns: list[str] = [
     "protein1",
     "protein2",
@@ -26,13 +26,13 @@ class TestInteractionParser:
 
     def test_download_data(self, interaction_parser: InteractionParser):
         """Test download_data method."""
-        if not os.path.exists("data/downloads"):
-            os.mkdir("data/downloads")
-        inter = InteractionParser("data/downloads")
+        if not os.path.exists(DOWNLOAD_FOLDER):
+            os.mkdir(DOWNLOAD_FOLDER)
+        inter = InteractionParser(DOWNLOAD_FOLDER)
         inter.download_data()
         # Check if files are created
         for file in files:
-            file_path = os.path.join("data/downloads", file)
+            file_path = os.path.join(DOWNLOAD_FOLDER, file)
             assert os.path.exists(file_path)
 
     def test_interaction_vers2(self, interaction_parser: InteractionParser):

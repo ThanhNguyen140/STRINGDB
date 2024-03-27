@@ -9,7 +9,10 @@ dependencies = [
     "pandas>=2.2.1",
     "requests>=2.31.0",
     "sqlalchemy>=2.0.28",
-    "pytest>=8.1.1",
+    "rdflib>=7.0.0",
+    "rdflib-neo4j>=1.0",
+    "neo4j>=5.18.0",
+    "tqdm>=4.66.2",
 ]
 requires-python = ">=3.11"
 readme = "README.md"
@@ -21,3 +24,8 @@ build-backend = "pdm.backend"
 
 [tool.pdm]
 distribution = true
+
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest>=8.1.1",
+]

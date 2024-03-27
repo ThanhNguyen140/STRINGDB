@@ -3,7 +3,7 @@ from pandas import DataFrame
 from sqlalchemy import Engine, Result, Row, Select, select
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from stringdb.protein_parser import protein_database as pdb
+from stringdb.protein_parser import ProteinDatabase as pdb
 from stringdb.interaction_parser import InteractionParser
 from stringdb.model import Base, Interaction, Protein
 
@@ -46,26 +46,27 @@ class Database:
                 data_dict = dict(data)
                 session.add(Protein(**data_dict))
             for _, data in int_df.iterrows():
-                protein_1_id: Protein | None = (
+                protein_1: Protein | None = (
                     session.query(Protein)
                     .filter_by(string_protein_id=data.protein1)
                     .first()
                 )
-                protein_2_id: Protein | None = (
+                protein_2: Protein | None = (
                     session.query(Protein)
                     .filter_by(string_protein_id=data.protein2)
                     .first()
                 )
-                interaction = Interaction(
-                    neighborhood=data.neighborhood,
-                    cooccurence=data.cooccurence,
-                    homology=data.homology,
-                    coexpression=data.coexpression,
-                    combined_score=data.combined_score,
-                    protein1=protein_1_id.id,
-                    protein2=protein_2_id.id,
-                )
-                session.add(interaction)
+                if protein_1 and protein_2:
+                    interaction = Interaction(
+                        neighborhood=data.neighborhood,
+                        cooccurence=data.cooccurence,
+                        homology=data.homology,
+                        coexpression=data.coexpression,
+                        combined_score=data.combined_score,
+                        protein1=protein_1.id,
+                        protein2=protein_2.id,
+                    )
+                    session.add(interaction)
             session.commit()
 
     def filter_data(

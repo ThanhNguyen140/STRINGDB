@@ -1,0 +1,443 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.6, pytest-8.1.1, pluggy-1.4.0
+rootdir: /home/ceb/workspace/uni_bonn/biodb/24/derofu-2/stringdb
+configfile: pyproject.toml
+plugins: anyio-4.3.0
+collected 9 items
+
+tests/interaction_parser_test.py .F                                      [ 22%]
+tests/manager_test.py .FFF.                                              [ 77%]
+tests/protein_parser_test.py .F                                          [100%]
+
+=================================== FAILURES ===================================
+_________________ TestInteractionParser.test_interaction_vers2 _________________
+
+self = <tests.interaction_parser_test.TestInteractionParser object at 0x77a47113e250>
+interaction_parser = <stringdb.interaction_parser.InteractionParser object at 0x77a46e2605d0>
+
+    def test_interaction_vers2(self, interaction_parser: InteractionParser):
+        """Test interaction_vers2 method."""
+>       df = interaction_parser.interaction_vers2()
+
+tests/interaction_parser_test.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/stringdb/interaction_parser.py:81: in interaction_vers2
+    interaction1: pd.DataFrame = pd.read_csv(
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1026: in read_csv
+    return _read(filepath_or_buffer, kwds)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:620: in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1620: in __init__
+    self._engine = self._make_engine(f, self.engine)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1880: in _make_engine
+    self.handles = get_handle(
+.venv/lib/python3.11/site-packages/pandas/io/common.py:765: in get_handle
+    handle = gzip.GzipFile(  # type: ignore[assignment]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x77a46e220eb0>
+filename = 'data/3750.protein.links.full.v12.0.txt.gz', mode = 'rb'
+compresslevel = 9, fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: 'data/3750.protein.links.full.v12.0.txt.gz'
+
+/usr/lib/python3.11/gzip.py:174: FileNotFoundError
+__________________________ TestDatabase.test_add_data __________________________
+
+self = <tests.manager_test.TestDatabase object at 0x77a46e255410>
+
+    def test_add_data(self):
+        "Test add_data method"
+>       self.db.add_data("data")
+
+tests/manager_test.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/stringdb/manager.py:41: in add_data
+    protein_df: DataFrame = p.load_data()
+src/stringdb/protein_parser.py:47: in load_data
+    df: pd.DataFrame = pd.read_csv(f, sep="\t").rename(
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1026: in read_csv
+    return _read(filepath_or_buffer, kwds)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:620: in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1620: in __init__
+    self._engine = self._make_engine(f, self.engine)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1880: in _make_engine
+    self.handles = get_handle(
+.venv/lib/python3.11/site-packages/pandas/io/common.py:765: in get_handle
+    handle = gzip.GzipFile(  # type: ignore[assignment]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x77a46d9a5870>
+filename = 'data/3750.protein.info.v12.0.txt.gz', mode = 'rb', compresslevel = 9
+fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: 'data/3750.protein.info.v12.0.txt.gz'
+
+/usr/lib/python3.11/gzip.py:174: FileNotFoundError
+----------------------------- Captured stderr call -----------------------------
+  0%|          | 0/2 [00:00<?, ?it/s]  0%|          | 0/2 [00:00<?, ?it/s]
+________________________ TestDatabase.test_filter_data _________________________
+
+self = <tests.manager_test.TestDatabase object at 0x77a46e255ad0>
+
+    def test_filter_data(self):
+        "Test filter_data method"
+        result: list[dict] = self.db.filter_data(combined_score_thre=200)
+>       assert len(result) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests/manager_test.py:37: AssertionError
+----------------------------- Captured stdout call -----------------------------
+2024-03-27 12:36:07,434 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2024-03-27 12:36:07,437 INFO sqlalchemy.engine.Engine SELECT interaction.id, interaction.protein1, interaction.protein2, interaction.neighborhood, interaction.cooccurence, interaction.homology, interaction.coexpression, interaction.combined_score 
+FROM interaction 
+WHERE interaction.combined_score >= ? AND interaction.homology >= ? AND interaction.coexpression >= ? AND interaction.cooccurence >= ? AND interaction.neighborhood >= ?
+2024-03-27 12:36:07,438 INFO sqlalchemy.engine.Engine [generated in 0.00014s] (200, 0, 0, 0, 0)
+------------------------------ Captured log call -------------------------------
+INFO     sqlalchemy.engine.Engine:base.py:2703 BEGIN (implicit)
+INFO     sqlalchemy.engine.Engine:base.py:1850 SELECT interaction.id, interaction.protein1, interaction.protein2, interaction.neighborhood, interaction.cooccurence, interaction.homology, interaction.coexpression, interaction.combined_score 
+FROM interaction 
+WHERE interaction.combined_score >= ? AND interaction.homology >= ? AND interaction.coexpression >= ? AND interaction.cooccurence >= ? AND interaction.neighborhood >= ?
+INFO     sqlalchemy.engine.Engine:base.py:1850 [generated in 0.00014s] (200, 0, 0, 0, 0)
+_______________________ TestDatabase.test_recreate_data ________________________
+
+self = <tests.manager_test.TestDatabase object at 0x77a46e2561d0>
+
+    def test_recreate_data(self):
+        "Test recreate_database method"
+        self.db.recreate_database()
+>       self.db.add_data("data")
+
+tests/manager_test.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/stringdb/manager.py:41: in add_data
+    protein_df: DataFrame = p.load_data()
+src/stringdb/protein_parser.py:47: in load_data
+    df: pd.DataFrame = pd.read_csv(f, sep="\t").rename(
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1026: in read_csv
+    return _read(filepath_or_buffer, kwds)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:620: in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1620: in __init__
+    self._engine = self._make_engine(f, self.engine)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1880: in _make_engine
+    self.handles = get_handle(
+.venv/lib/python3.11/site-packages/pandas/io/common.py:765: in get_handle
+    handle = gzip.GzipFile(  # type: ignore[assignment]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x77a46d9dba30>
+filename = 'data/3750.protein.info.v12.0.txt.gz', mode = 'rb', compresslevel = 9
+fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: 'data/3750.protein.info.v12.0.txt.gz'
+
+/usr/lib/python3.11/gzip.py:174: FileNotFoundError
+----------------------------- Captured stdout call -----------------------------
+2024-03-27 12:36:07,440 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2024-03-27 12:36:07,440 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("protein")
+2024-03-27 12:36:07,440 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-03-27 12:36:07,440 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("interaction")
+2024-03-27 12:36:07,440 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-03-27 12:36:07,440 INFO sqlalchemy.engine.Engine 
+DROP TABLE interaction
+2024-03-27 12:36:07,441 INFO sqlalchemy.engine.Engine [no key 0.00006s] ()
+2024-03-27 12:36:07,443 INFO sqlalchemy.engine.Engine 
+DROP TABLE protein
+2024-03-27 12:36:07,443 INFO sqlalchemy.engine.Engine [no key 0.00006s] ()
+2024-03-27 12:36:07,444 INFO sqlalchemy.engine.Engine COMMIT
+2024-03-27 12:36:07,444 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2024-03-27 12:36:07,444 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("protein")
+2024-03-27 12:36:07,444 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-03-27 12:36:07,444 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info("protein")
+2024-03-27 12:36:07,444 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-03-27 12:36:07,445 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("interaction")
+2024-03-27 12:36:07,445 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-03-27 12:36:07,445 INFO sqlalchemy.engine.Engine PRAGMA temp.table_info("interaction")
+2024-03-27 12:36:07,445 INFO sqlalchemy.engine.Engine [raw sql] ()
+2024-03-27 12:36:07,445 INFO sqlalchemy.engine.Engine 
+CREATE TABLE protein (
+	id INTEGER NOT NULL, 
+	string_protein_id VARCHAR NOT NULL, 
+	"uniprot_AC" VARCHAR NOT NULL, 
+	PRIMARY KEY (id)
+)
+
+
+2024-03-27 12:36:07,445 INFO sqlalchemy.engine.Engine [no key 0.00004s] ()
+2024-03-27 12:36:07,447 INFO sqlalchemy.engine.Engine 
+CREATE TABLE interaction (
+	id INTEGER NOT NULL, 
+	protein1 INTEGER NOT NULL, 
+	protein2 INTEGER NOT NULL, 
+	neighborhood INTEGER NOT NULL, 
+	cooccurence INTEGER NOT NULL, 
+	homology INTEGER NOT NULL, 
+	coexpression INTEGER NOT NULL, 
+	combined_score INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(protein1) REFERENCES protein (id), 
+	FOREIGN KEY(protein2) REFERENCES protein (id)
+)
+
+
+2024-03-27 12:36:07,447 INFO sqlalchemy.engine.Engine [no key 0.00005s] ()
+2024-03-27 12:36:07,448 INFO sqlalchemy.engine.Engine COMMIT
+----------------------------- Captured stderr call -----------------------------
+  0%|          | 0/2 [00:00<?, ?it/s]  0%|          | 0/2 [00:00<?, ?it/s]
+------------------------------ Captured log call -------------------------------
+INFO     sqlalchemy.engine.Engine:base.py:2703 BEGIN (implicit)
+INFO     sqlalchemy.engine.Engine:base.py:1850 PRAGMA main.table_info("protein")
+INFO     sqlalchemy.engine.Engine:base.py:1850 [raw sql] ()
+INFO     sqlalchemy.engine.Engine:base.py:1850 PRAGMA main.table_info("interaction")
+INFO     sqlalchemy.engine.Engine:base.py:1850 [raw sql] ()
+INFO     sqlalchemy.engine.Engine:base.py:1850 
+DROP TABLE interaction
+INFO     sqlalchemy.engine.Engine:base.py:1850 [no key 0.00006s] ()
+INFO     sqlalchemy.engine.Engine:base.py:1850 
+DROP TABLE protein
+INFO     sqlalchemy.engine.Engine:base.py:1850 [no key 0.00006s] ()
+INFO     sqlalchemy.engine.Engine:base.py:2709 COMMIT
+INFO     sqlalchemy.engine.Engine:base.py:2703 BEGIN (implicit)
+INFO     sqlalchemy.engine.Engine:base.py:1850 PRAGMA main.table_info("protein")
+INFO     sqlalchemy.engine.Engine:base.py:1850 [raw sql] ()
+INFO     sqlalchemy.engine.Engine:base.py:1850 PRAGMA temp.table_info("protein")
+INFO     sqlalchemy.engine.Engine:base.py:1850 [raw sql] ()
+INFO     sqlalchemy.engine.Engine:base.py:1850 PRAGMA main.table_info("interaction")
+INFO     sqlalchemy.engine.Engine:base.py:1850 [raw sql] ()
+INFO     sqlalchemy.engine.Engine:base.py:1850 PRAGMA temp.table_info("interaction")
+INFO     sqlalchemy.engine.Engine:base.py:1850 [raw sql] ()
+INFO     sqlalchemy.engine.Engine:base.py:1850 
+CREATE TABLE protein (
+	id INTEGER NOT NULL, 
+	string_protein_id VARCHAR NOT NULL, 
+	"uniprot_AC" VARCHAR NOT NULL, 
+	PRIMARY KEY (id)
+)
+
+
+INFO     sqlalchemy.engine.Engine:base.py:1850 [no key 0.00004s] ()
+INFO     sqlalchemy.engine.Engine:base.py:1850 
+CREATE TABLE interaction (
+	id INTEGER NOT NULL, 
+	protein1 INTEGER NOT NULL, 
+	protein2 INTEGER NOT NULL, 
+	neighborhood INTEGER NOT NULL, 
+	cooccurence INTEGER NOT NULL, 
+	homology INTEGER NOT NULL, 
+	coexpression INTEGER NOT NULL, 
+	combined_score INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(protein1) REFERENCES protein (id), 
+	FOREIGN KEY(protein2) REFERENCES protein (id)
+)
+
+
+INFO     sqlalchemy.engine.Engine:base.py:1850 [no key 0.00005s] ()
+INFO     sqlalchemy.engine.Engine:base.py:2709 COMMIT
+______________________ TestProteinDatabase.test_load_data ______________________
+
+self = <tests.protein_parser_test.TestProteinDatabase object at 0x77a46e2578d0>
+
+    def test_load_data(self):
+        "Test load_data method"
+>       df: DataFrame = self.db.load_data()
+
+tests/protein_parser_test.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/stringdb/protein_parser.py:47: in load_data
+    df: pd.DataFrame = pd.read_csv(f, sep="\t").rename(
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1026: in read_csv
+    return _read(filepath_or_buffer, kwds)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:620: in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1620: in __init__
+    self._engine = self._make_engine(f, self.engine)
+.venv/lib/python3.11/site-packages/pandas/io/parsers/readers.py:1880: in _make_engine
+    self.handles = get_handle(
+.venv/lib/python3.11/site-packages/pandas/io/common.py:765: in get_handle
+    handle = gzip.GzipFile(  # type: ignore[assignment]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'GzipFile' object has no attribute 'fileobj'") raised in repr()] GzipFile object at 0x77a46e294760>
+filename = 'data/3750.protein.info.v12.0.txt.gz', mode = 'rb', compresslevel = 9
+fileobj = None, mtime = None
+
+    def __init__(self, filename=None, mode=None,
+                 compresslevel=_COMPRESS_LEVEL_BEST, fileobj=None, mtime=None):
+        """Constructor for the GzipFile class.
+    
+        At least one of fileobj and filename must be given a
+        non-trivial value.
+    
+        The new class instance is based on fileobj, which can be a regular
+        file, an io.BytesIO object, or any other object which simulates a file.
+        It defaults to None, in which case filename is opened to provide
+        a file object.
+    
+        When fileobj is not None, the filename argument is only used to be
+        included in the gzip file header, which may include the original
+        filename of the uncompressed file.  It defaults to the filename of
+        fileobj, if discernible; otherwise, it defaults to the empty string,
+        and in this case the original filename is not included in the header.
+    
+        The mode argument can be any of 'r', 'rb', 'a', 'ab', 'w', 'wb', 'x', or
+        'xb' depending on whether the file will be read or written.  The default
+        is the mode of fileobj if discernible; otherwise, the default is 'rb'.
+        A mode of 'r' is equivalent to one of 'rb', and similarly for 'w' and
+        'wb', 'a' and 'ab', and 'x' and 'xb'.
+    
+        The compresslevel argument is an integer from 0 to 9 controlling the
+        level of compression; 1 is fastest and produces the least compression,
+        and 9 is slowest and produces the most compression. 0 is no compression
+        at all. The default is 9.
+    
+        The mtime argument is an optional numeric timestamp to be written
+        to the last modification time field in the stream when compressing.
+        If omitted or None, the current time is used.
+    
+        """
+    
+        if mode and ('t' in mode or 'U' in mode):
+            raise ValueError("Invalid mode: {!r}".format(mode))
+        if mode and 'b' not in mode:
+            mode += 'b'
+        if fileobj is None:
+>           fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+E           FileNotFoundError: [Errno 2] No such file or directory: 'data/3750.protein.info.v12.0.txt.gz'
+
+/usr/lib/python3.11/gzip.py:174: FileNotFoundError
+----------------------------- Captured stderr call -----------------------------
+  0%|          | 0/2 [00:00<?, ?it/s]  0%|          | 0/2 [00:00<?, ?it/s]
+=========================== short test summary info ============================
+FAILED tests/interaction_parser_test.py::TestInteractionParser::test_interaction_vers2
+FAILED tests/manager_test.py::TestDatabase::test_add_data - FileNotFoundError...
+FAILED tests/manager_test.py::TestDatabase::test_filter_data - assert 0 == 1
+FAILED tests/manager_test.py::TestDatabase::test_recreate_data - FileNotFound...
+FAILED tests/protein_parser_test.py::TestProteinDatabase::test_load_data - Fi...
+========================= 5 failed, 4 passed in 40.68s =========================

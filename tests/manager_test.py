@@ -4,15 +4,16 @@ from sqlalchemy.engine.row import Row
 from stringdb.manager import Database, Protein, Interaction
 from sqlalchemy.orm import Session
 from sqlalchemy import Inspector, Select, select, inspect
-import pytest
+import os.path
+from .const import DATA_FOLDER
 
-DATA_FOLDER = "data/stringdb.sqlite"
+TEST_DB = os.path.join(DATA_FOLDER, "stringdb.sqlite")
 
 
 class TestDatabase:
     def setup_method(self):
         """Setup method to provide a Database instane as self.db"""
-        self.db = Database(DATA_FOLDER)
+        self.db = Database(TEST_DB)
 
     def test_create_database(self):
         "Test create_database method"
@@ -22,14 +23,12 @@ class TestDatabase:
 
     def test_add_data(self):
         "Test add_data method"
-        self.db.add_data("data")
+        self.db.add_data(DATA_FOLDER)
         session = Session(self.db.engine)
-        stmt1: Select[Tuple[Protein]] = select(Protein)
-        stmt2: Select[Tuple[Interaction]] = select(Interaction)
-        prot: Sequence[Row[Tuple[Protein]]] = session.execute(stmt1).all()
-        inter: Sequence[Row[Tuple[Interaction]]] = session.execute(stmt2).all()
-        assert len(prot) == 10
-        assert len(inter) == 2
+        number_of_proteins = session.query(Protein).count()
+        number_of_interactions = session.query(Interaction).count()
+        assert number_of_proteins == 10
+        assert number_of_interactions == 2
 
     def test_filter_data(self):
         "Test filter_data method"
@@ -43,7 +42,7 @@ class TestDatabase:
     def test_recreate_data(self):
         "Test recreate_database method"
         self.db.recreate_database()
-        self.db.add_data("data")
+        self.db.add_data(DATA_FOLDER)
         session = Session(self.db.engine)
         stmt1: Select[Tuple[Protein]] = select(Protein)
         stmt2: Select[Tuple[Interaction]] = select(Interaction)

@@ -4,7 +4,7 @@ import os
 import requests
 
 
-class protein_database:
+class ProteinDatabase:
     def __init__(self, path):
         """Initiation of protein_database
 
