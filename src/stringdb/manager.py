@@ -17,7 +17,7 @@ class Database:
         Args:
             path_to_files (str): Path to .sqlite or .db file
         """
-        self.engine: Engine = create_engine(f"sqlite:///{path_to_files}", echo=True)
+        self.engine: Engine = create_engine(f"sqlite:///{path_to_files}", echo=False)
 
     def create_database(self):
         """Create an empty database"""
