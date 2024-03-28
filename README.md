@@ -5,10 +5,11 @@ Table of content:
     - [1. Goal](#1-goal)
     - [2. Objective](#2-objective)
     - [3. Cleaning data](#3-cleaning-data)
-    - [4. Import data to Neo4j](#4-import-data-to-neo4j)
-    - [5. Data](#5-data)
-    - [6. Test](#6-test)
-    - [7. Results](#7-results)
+    - [4. Manage database:](#4-manage-database)
+    - [5. Import data to Neo4j](#5-import-data-to-neo4j)
+    - [6. Data](#6-data)
+    - [7. Test](#7-test)
+    - [8. Results](#8-results)
 
 ### 1. Goal
 This project is created to deal with StringDB database, creating a database to work with Malus Domestica. The information of the created database was retrieved from StringDB interaction table. 
@@ -31,18 +32,25 @@ This project is created to deal with StringDB database, creating a database to w
     4. The table is imported to database by [manager.py](src/stringdb/manager.py)
 - There are no NaN values in the StringDB tables
 
-### 4. Import data to Neo4j
+### 4. Manage database:
+- Done by manage.py
+- Load data in the folder where StringDB files are downloaded
+- Clean data by using interaction_parser and protein_parser scripts
+- Load data into SQL database
+- Allow the filtering of interaction table in SQL database by threshold values
+
+### 5. Import data to Neo4j
 - Done by [import_Neo4j.py](src/stringdb/import_Neo4j.py)
 - Create ttl file from .sqlite or .db databases containing protein and interaction tables
 - Import ttl file to Neo4j
 
-### 5. [Data](data)
+### 6. [Data](data)
 
-### 6. [Test](tests)
-- Including interaction_parser_test.py, manager_test.py and protein_parser_test.py
+### 7. [Test](tests)
+- Including interaction_parser_test.py, manager_test.py, import_neo4j_test.py and protein_parser_test.py
 - [data](tests/data/): containing data for the test scripts
 
-### 7. Results
+### 8. Results
 - .sqlite file can be created by sqlalchemy
 - Allow the filter of interaction table for certain value threshold
 - Graph is successfully created in Neo4j

@@ -39,3 +39,6 @@ distribution = true
 test = [
     "pytest>=8.1.1",
 ]
+[tool.pytest.ini_options]
+testpaths=['tests']
+filterwarnings = ["ignore::DeprecationWarning"]

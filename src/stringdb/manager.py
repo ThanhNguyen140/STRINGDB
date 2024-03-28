@@ -60,11 +60,11 @@ class Database:
                 )
                 if protein_1 and protein_2:
                     interaction = Interaction(
-                        neighborhood=data.neighborhood,
-                        cooccurence=data.cooccurence,
-                        homology=data.homology,
-                        coexpression=data.coexpression,
-                        combined_score=data.combined_score,
+                        neighborhood=data.neighborhood,  # type: ignore
+                        cooccurence=data.cooccurence,  # type: ignore
+                        homology=data.homology,  # type: ignore
+                        coexpression=data.coexpression,  # type: ignore
+                        combined_score=data.combined_score,  # type: ignore
                         protein1=protein_1.id,
                         protein2=protein_2.id,
                     )

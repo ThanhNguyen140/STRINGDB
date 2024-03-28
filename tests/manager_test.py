@@ -5,6 +5,7 @@ from stringdb.manager import Database, Protein, Interaction
 from sqlalchemy.orm import Session
 from sqlalchemy import Inspector, Select, select, inspect
 import os.path
+import warnings
 from .const import DATA_FOLDER
 
 TEST_DB = os.path.join(DATA_FOLDER, "stringdb.sqlite")
@@ -32,9 +33,9 @@ class TestDatabase:
 
     def test_filter_data(self):
         "Test filter_data method"
-        result: list[dict] = self.db.filter_data(combined_score_thre=200)
-        assert len(result) == 1
-        dct = result[0]
+        result: list[dict] = self.db.filter_data(combined_score_thre=200)  # type: ignore
+        assert len(result) == 1  # type: ignore
+        dct = result[0]  # type: ignore
         assert dct["protein_AC_1"] == "A0A097IC86"
         assert dct["protein_AC_2"] == "A0A0M3R7K5"
         assert dct["combined_score"] == 213

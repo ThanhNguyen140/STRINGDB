@@ -20,7 +20,7 @@ services:
       - MYSQL_USER=test_stringdb_user
       - MYSQL_PASSWORD=test_stringdb_passwd
     volumes:
-      - plab2_mysql:/var/lib/mysql
+      - test_stringdb_mysql:/var/lib/mysql
 
   neo4j:
     image: docker.io/library/neo4j:latest
@@ -28,20 +28,10 @@ services:
       - "7474:7474"
       - "7687:7687"
     volumes:
-      - plab2_neo4j_data:/data
-      - plab2_neo4j_plugins:/var/lib/neo4j/plugins
+      - test_stringdb_neo4j_data:/data
+      - test_stringdb_neo4j_plugins:/var/lib/neo4j/plugins
     environment:
       NEO4J_AUTH: neo4j/neo4j_passwd
-
-  neodash:
-    image: docker.io/neo4jlabs/neodash
-    ports:
-      - "5005:5005"
-    environment:
-      NEO4J_HOST: neo4j
-      NEO4J_PORT: 7687
-    depends_on:
-      - neo4j
 
 
 volumes:

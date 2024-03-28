@@ -110,11 +110,11 @@ class import_data:
         del graph
         print("Finished creating ttl files")
 
-    def to_neo4j(self, clear=False):
+    def to_neo4j(self, clear: bool = False):
         """Create graphs in Neo4j
 
         Args:
-            clear (bool, optional): Clear previous data in Neo4j. Defaults to False.
+            clear (bool, optional): Clear current nodes in Neo4j. Defaults to False.
         """
         URI = "neo4j://localhost:7687"
         USER = "neo4j"
@@ -129,11 +129,17 @@ class import_data:
                 session.run(cypher)
                 cypher = "MATCH (n) DELETE n"
                 session.run(cypher)
+
         with driver.session() as session:
             cypher = "CREATE CONSTRAINT n10s_unique_uri IF NOT EXISTS  FOR (r:Resource) REQUIRE r.uri IS UNIQUE"
             session.run(cypher)
 
-        auth_data = {"uri": URI, "database": "neo4j", "user": USER, "pwd": PWD}
+        auth_data: dict[str, str] = {
+            "uri": URI,
+            "database": "neo4j",
+            "user": USER,
+            "pwd": PWD,
+        }
 
         config = Neo4jStoreConfig(
             auth_data=auth_data,
