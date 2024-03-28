@@ -1,0 +1,90 @@
+@prefix brenda: <https://www.brenda-enzymes.org/enzyme.php?ecno=> .
+@prefix gene_name: <https://www.biodb.uni-bonn.de/gene_name/> .
+@prefix node: <https://plab2.bit.uni-bonn.de/node#> .
+@prefix organism: <https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=> .
+@prefix relation: <https://plab2.bit.uni-bonn.de/relation#> .
+@prefix uniprot: <http://purl.uniprot.org/uniprot/> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+
+uniprot:A0A0E3T3B5 a node:Enzyme,
+        node:Protein ;
+    relation:entry_name "A0A0E3T3B5"^^xs:string ;
+    relation:gene_id gene_name:Gene1,
+        gene_name:Gene2,
+        gene_name:Gene3 ;
+    relation:go_id <https://www.ebi.ac.uk/QuickGO/term/GO:0005777>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0019145>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0019285>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0033737>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0046872>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0110095> ;
+    relation:protein_name "Aminoaldehyde dehydrogenase 2, peroxisomal (MdAMADH2) (EC 1.2.1.-) (Aminobutyraldehyde dehydrogenase AMADH2) (EC 1.2.1.19)"^^xs:string ;
+    relation:xfref_organsim organism:3750 ;
+    relation:xref_brenda brenda:1.1.1.1,
+        brenda:EC.1 .
+
+uniprot:A0A0E3T552 a node:Enzyme,
+        node:Protein ;
+    relation:entry_name "A0A0E3T552"^^xs:string ;
+    relation:gene_id gene_name:AMADH1 ;
+    relation:go_id <https://www.ebi.ac.uk/QuickGO/term/GO:0005829>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0019145>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0019285>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0033737>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0046872>,
+        <https://www.ebi.ac.uk/QuickGO/term/GO:0110095> ;
+    relation:protein_name "Aminoaldehyde dehydrogenase 1, peroxisomal (MdAMADH1) (EC 1.2.1.-) (Aminobutyraldehyde dehydrogenase AMADH1) (EC 1.2.1.19)"^^xs:string ;
+    relation:xfref_organsim organism:3750 ;
+    relation:xref_brenda brenda:1.2.1.19 .
+
+uniprot:test_entry a node:Protein ;
+    relation:entry_name "test_entry"^^xs:string ;
+    relation:protein_name "test_name"^^xs:string ;
+    relation:xfref_organsim organism:3750 .
+
+gene_name:AMADH1 a node:Gene_Name ;
+    relation:gene_name "AMADH1"^^xs:string .
+
+gene_name:Gene1 a node:Gene_Name ;
+    relation:gene_name "Gene1"^^xs:string .
+
+gene_name:Gene2 a node:Gene_Name ;
+    relation:gene_name "Gene2"^^xs:string .
+
+gene_name:Gene3 a node:Gene_Name ;
+    relation:gene_name "Gene3"^^xs:string .
+
+brenda:1.1.1.1 a node:EC_number ;
+    relation:ec_number "1.1.1.1"^^xs:string .
+
+brenda:1.2.1.19 a node:EC_number ;
+    relation:ec_number "1.2.1.19"^^xs:string .
+
+brenda:EC.1 a node:EC_number ;
+    relation:ec_number "EC.1"^^xs:string .
+
+<https://www.ebi.ac.uk/QuickGO/term/GO:0005777> a node:GO_term ;
+    relation:Go_id "GO:0005777"^^xs:string .
+
+<https://www.ebi.ac.uk/QuickGO/term/GO:0005829> a node:GO_term ;
+    relation:Go_id "GO:0005829"^^xs:string .
+
+<https://www.ebi.ac.uk/QuickGO/term/GO:0019145> a node:GO_term ;
+    relation:Go_id "GO:0019145"^^xs:string .
+
+<https://www.ebi.ac.uk/QuickGO/term/GO:0019285> a node:GO_term ;
+    relation:Go_id "GO:0019285"^^xs:string .
+
+<https://www.ebi.ac.uk/QuickGO/term/GO:0033737> a node:GO_term ;
+    relation:Go_id "GO:0033737"^^xs:string .
+
+<https://www.ebi.ac.uk/QuickGO/term/GO:0046872> a node:GO_term ;
+    relation:Go_id "GO:0046872"^^xs:string .
+
+<https://www.ebi.ac.uk/QuickGO/term/GO:0110095> a node:GO_term ;
+    relation:Go_id "GO:0110095"^^xs:string .
+
+organism:3750 a node:Organism ;
+    relation:Organism_id "3750"^^xs:string ;
+    relation:Scientific_Name "Malus domestica"^^xs:string .
+

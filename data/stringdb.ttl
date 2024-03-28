@@ -1,0 +1,16 @@
+@prefix node: <https://plab2.bit.uni-bonn.de/stringdb/node#> .
+@prefix relation: <https://plab2.bit.uni-bonn.de/stringdb/relation#> .
+@prefix uniprot: <http://purl.uniprot.org/uniprot/> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+
+uniprot:A0A0E3T3B5 relation:interact relation:id_2 .
+
+relation:id_2 a node:interaction ;
+    relation:coexpression 0 ;
+    relation:combined_score 213 ;
+    relation:cooccurence 177 ;
+    relation:homology 595 ;
+    relation:identifier 2 ;
+    relation:interact uniprot:A0A0E3T552 ;
+    relation:neighborhood 0 .
+
