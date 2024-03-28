@@ -5,7 +5,7 @@ Table of content:
     - [1. Goal](#1-goal)
     - [2. Objective](#2-objective)
     - [3. Cleaning data](#3-cleaning-data)
-    - [4. Manage database:](#4-manage-database)
+    - [4. Manage database](#4-manage-database)
     - [5. Import data to Neo4j](#5-import-data-to-neo4j)
     - [6. Data](#6-data)
     - [7. Test](#7-test)
@@ -32,8 +32,8 @@ This project is created to deal with StringDB database, creating a database to w
     4. The table is imported to database by [manager.py](src/stringdb/manager.py)
 - There are no NaN values in the StringDB tables
 
-### 4. Manage database:
-- Done by manage.py
+### 4. Manage database
+- Done by [manage.py](src/stringdb/manager.py)
 - Load data in the folder where StringDB files are downloaded
 - Clean data by using interaction_parser and protein_parser scripts
 - Load data into SQL database
